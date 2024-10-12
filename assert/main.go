@@ -2,10 +2,33 @@ package assert
 
 import "fmt"
 
-// assert that value should be true. If it's not, a panic will be executed
 func True(value bool, keyword string) {
 	if !value {
 		failed("assert.True", keyword)
+	}
+}
+
+func False(value bool, keyword string) {
+	if value {
+		failed("assert.False", keyword)
+	}
+}
+
+func NotNil(value any, keyword string) {
+	if value == nil {
+		failed("assert.NotNil", keyword)
+	}
+}
+
+func Nil(value any, keyword string) {
+	if value != nil {
+		failed("assert.Nil", keyword)
+	}
+}
+
+func String(value string, expected string, keyword string) {
+	if value != expected {
+		failed(fmt.Sprintf("assert.String [%s]", expected), keyword)
 	}
 }
 
