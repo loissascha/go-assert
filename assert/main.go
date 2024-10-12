@@ -33,6 +33,9 @@ func String(value string, expected string, keyword string) {
 }
 
 func failed(funcName string, keyword string) {
+	if Config.PrintOnFail {
+		fmt.Println(funcName, "failed in", keyword)
+	}
 	if Config.PanicOnFail {
 		panic(fmt.Sprintf("%s failed in %s", funcName, keyword))
 	}
